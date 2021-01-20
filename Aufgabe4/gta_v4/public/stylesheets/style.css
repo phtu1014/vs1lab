@@ -12,16 +12,21 @@ br {
 }
 
 a {
-  color: #cf4281;
+  color: #a10b4e;
 }
 
 header, footer {
-  background-color: #cdd1d1;
+  background-color: #adadad;
   padding: 10px;
+  border-radius: 5px;
 }
 
 * {
   box-sizing: border-box;
+}
+
+ul {
+  padding-left: 0px;
 }
 
 /* [class*="col-"]{
@@ -53,6 +58,7 @@ header, footer {
   /* column-count: 2; */
   flex-direction: column;
   border: red;
+  justify-content: flex-start;
 }
 
 .tagging {
@@ -75,12 +81,18 @@ header, footer {
   width: 300px;
   height: 30px;
   padding: 5px;
-  margin: 10px;
-  border-radius: 5px;
-  background-color: #e084ae;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  /* padding-left: 0px;
+  margin-left: 0px;
+  margin-bottom: 7px; */
+  /* border-radius: 5px; */
+  background-color: #d13b7e;
   color: white;
   list-style-type: none;
   flex: 0 1 auto;
+  vertical-align: middle;
+  border-radius: 5px;
 }
 
 .tagmap {
@@ -103,6 +115,7 @@ header, footer {
 .paginatedList{
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px;
 }
 
 .pagenumbers{
@@ -121,24 +134,24 @@ header, footer {
   cursor: pointer;
   border-radius: 5px;
 
-  background-color: #44AAEE;
+  background-color: #d13b7e;
 
   margin: 5px;
   transition: 0.4s;
 
   color: #FFF;
-  font-size: 18px;
-  text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  /* text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2); */
 }
 
 .pagenumbers input:hover{
-  background-color: #44EEAA;
+  background-color: #e879ab;
 }
 
 .pagenumbers input.active{
-  background-color: #44EEAA;
-  box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
+  background-color: #a10b4e;
+  /* box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2); */
 }
 
 .pagenumbers input:disabled{
