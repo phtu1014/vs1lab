@@ -66,6 +66,8 @@ class GeoTag{
  * - Funktion zum Löschen eines Geo Tags.
  */
 var idCounter = 0;
+var rows = 3;
+
 // TODO: CODE ERGÄNZEN
 var geoTagModule = (function() {
   //private
@@ -124,13 +126,14 @@ var geoTagModule = (function() {
       return geoTags;
     },
 
-    getTenItems:function(page, rows){
+    getPageItems:function(page){
+
         var res = [];
-        var start = rows * (page-1);
-        var end = start  + rows + rows;
+        var start = rows*(page-1);
+        var end = start+rows;
         var j;
         for(j = start; j < end; j++){
-            if(geoTags[j] !== null) {
+            if(geoTags[j] !== null && geoTags[j] !== undefined) {
                 res.push(geoTags[j]);
             }
             else{
@@ -161,10 +164,17 @@ var geoTagModule = (function() {
           return;
         }
       });
-    }
+    },
+
+  getCurrentPageIndex: function(){
+        return currentPageIndex;
+  } ,
+
+  getElementsPerPage: function(){
+        return rows;
+  }
   };
 })();
-
 
 
 /**
@@ -274,8 +284,8 @@ app.get('/geotags', function(req, res){
         res.json(geoTagModule.searchForTerm(req.query.search));
     return;
   }
-  else if(req.query.currentpage && req.query.rows){
-      res.json(geoTagModule.getTenItems(req.query.currentpage, req.query.rows));
+  else if(req.query.currentpage){
+      res.json(geoTagModule.getPageItems(req.query.currentpage));
       return;
   }
   else{
@@ -284,11 +294,26 @@ app.get('/geotags', function(req, res){
   }
 });
 
+
 //Route to add new Geotag
 app.post('/geotags', function(req, res){
     if(req.body.latitude && req.body.longitude && req.body.name && req.body.hashtag){
       var id = geoTagModule.addGeoTag(req.body);
       res.status(201).set("Location", "http://" + server.address().address + ":" + server.address().port + "/geotags/" + id).json(geoTagModule.get());
+    }
+    else if(req.body.example){
+        var id;
+        req.body.example.forEach(function(element){
+            if(element.latitude && element.longitude
+                && element.name && element.hashtag){
+                id = geoTagModule.addGeoTag(element);
+            }
+        });
+        res.status(201).set(
+            "Location", "http://" + server.address().address + ":"
+            + server.address().port + "/geotags/" + id)
+            .json(geoTagModule.get())
+        ;
     }
     else{
       res.status(400).send("post request was invalid");
@@ -320,6 +345,12 @@ app.put('/geotags/:id', function(req, res){
 app.delete('/geotags/:id', function(req, res){
   geoTagModule.deleteGeoTagById(req.params.id);
   res.status(200).send();
+});
+
+app.get('/update', function(req, res){
+    var update = [geoTagModule.get().length, geoTagModule.getElementsPerPage()];
+    res.json(update);
+    return;
 });
 /**
  * Setze Port und speichere in Express.
