@@ -49,7 +49,6 @@ var ajax = new XMLHttpRequest();
 let current_page = 1;
 var rows = 3;
 var rowURL = "rows="+rows;
-var last_page = false;
 
 var prevbutton = document.getElementById("previousButton");
 var minustwobutton = document.getElementById("minustwo");
@@ -62,29 +61,91 @@ var plusonebutton = document.getElementById("plusone");
 var plustwobutton = document.getElementById("plustwo");
 var nextbutton = document.getElementById("nextButton");
 
-prevbutton.addEventListener("click", function(){
-    current_page--;
+var moduleArrayLength = 0;
+var maxPageNum = 0;
+
+var updatePage = function(){
+    ajax.onreadystatechange = function(){
+        if(ajax.readyState == 4){
+            var update = JSON.parse(ajax.response);
+            moduleArrayLength = update[0];
+            rows = update[1];
+
+            maxPageNum = Math.ceil(moduleArrayLength / rows);
+            console.log("length: " + moduleArrayLength + " | epp: " + rows + " | last: " + maxPageNum);
+        }
+    };
+
+    ajax.open("GET", "/update?", true);
+    ajax.send();
+};
+
+function enableAll(){
+    plustwobutton.disabled = false;
+    plusonebutton.disabled = false;
+    plustwobutton.setAttribute("value", current_page+2);
+    plusonebutton.setAttribute("value", current_page+1);
+
+    minustwobutton.disabled = false;
+    minusonebutton.disabled = false;
+    minustwobutton.setAttribute("value", current_page-2);
+    minusonebutton.setAttribute("value", current_page-1);
+
+    currbutton.setAttribute("value", current_page);
+
+    nextbutton.disabled = false;
+    prevbutton.disabled = false;
+}
+
+function buttonLogic(){
     if(current_page == 1){
         prevbutton.disabled = true;
         minustwobutton.disabled = true;
         minusonebutton.disabled = true;
+        minustwobutton.setAttribute("value", "");
+        minusonebutton.setAttribute("value", "");
+        console.log("first_page");
     }
-    if(last_page){
+    else if(current_page == 2){
+        if(current_page == maxPageNum-1){
+            plustwobutton.disabled = true;
+            plustwobutton.setAttribute("value", "");
+            console.log("pre_last_page");
+        }
+        minustwobutton.disabled = true;
+        minustwobutton.setAttribute("value", "");
+        console.log("second_page");
+    }
+    else if(current_page == maxPageNum-1){
+        plustwobutton.disabled = true;
+        plustwobutton.setAttribute("value", "");
+        console.log("pre_last_page");
+    }
+    else if(current_page == maxPageNum){
+        nextbutton.disabled = true;
+        plustwobutton.disabled = true;
+        plustwobutton.setAttribute("value", "");
+        plusonebutton.disabled = true;
+        plusonebutton.setAttribute("value", "");
+        console.log("last page");
+    }
+}
 
-    }
+prevbutton.addEventListener("click", function(){
+    current_page--;
+    enableAll();
     ajax.onreadystatechange = function(){
         if(ajax.readyState == 4){
             console.log(JSON.parse(ajax.response));
             generateList(JSON.parse(ajax.response));
+            updatePage();
+            buttonLogic();
         }
     };
-    newPageNumbers(current_page);
-
     changeActiveSite(currbutton);
-
     var pageURL = "currentpage="+current_page;
     var url = "";
-    url = "/geotags?"+pageURL+"&"+rowURL; // link.de/geotags?search=karlsruhe
+    url = "/geotags?"+pageURL; // link.de/geotags?search=karlsruhe
     console.log(url);
     ajax.open("GET", url, true);
     ajax.send();
@@ -92,17 +153,20 @@ prevbutton.addEventListener("click", function(){
 
 nextbutton.addEventListener("click", function() {
     current_page++;
+    enableAll();
     ajax.onreadystatechange = function(){
         if(ajax.readyState == 4){
             console.log(JSON.parse(ajax.response));
-            newPageNumbers(current_page, generateList(JSON.parse(ajax.response)));
+            generateList(JSON.parse(ajax.response));
+            updatePage();
+            buttonLogic();
         }
     };
     changeActiveSite(currbutton);
 
     var pageURL = "currentpage="+current_page;
     var url = "";
-    url = "/geotags?"+pageURL+"&"+rowURL; // link.de/geotags?search=karlsruhe
+    url = "/geotags?"+pageURL; // link.de/geotags?search=karlsruhe
     console.log(url);
     ajax.open("GET", url, true);
     ajax.send();
@@ -113,12 +177,14 @@ minustwobutton.addEventListener("click", function(){
         if(ajax.readyState == 4){
             console.log(JSON.parse(ajax.response));
             generateList(JSON.parse(ajax.response));
+            updatePage();
+
         }
     };
     var newCurrentPage = current_page-2;
     var pageURL = "currentpage="+newCurrentPage;
     var url = "";
-    url = "/geotags?"+pageURL+"&"+rowURL; // link.de/geotags?search=karlsruhe
+    url = "/geotags?"+pageURL; // link.de/geotags?search=karlsruhe
     console.log(url);
 
     changeActiveSite(this);
@@ -132,12 +198,13 @@ minusonebutton.addEventListener("click", function(){
         if(ajax.readyState == 4){
             console.log(JSON.parse(ajax.response));
             generateList(JSON.parse(ajax.response));
+            updatePage();
         }
     };
     var newCurrentPage = current_page-1;
     var pageURL = "currentpage="+newCurrentPage;
     var url = "";
-    url = "/geotags?"+pageURL+"&"+rowURL; // link.de/geotags?search=karlsruhe
+    url = "/geotags?"+pageURL; // link.de/geotags?search=karlsruhe
     console.log(url);
 
     changeActiveSite(this);
@@ -151,11 +218,12 @@ currbutton.addEventListener("click", function(){
         if(ajax.readyState == 4){
             console.log(JSON.parse(ajax.response));
             generateList(JSON.parse(ajax.response));
+            updatePage();
         }
     };
     var pageURL = "currentpage="+current_page;
     var url = "";
-    url = "/geotags?"+pageURL+"&"+rowURL; // link.de/geotags?search=karlsruhe
+    url = "/geotags?"+pageURL; // link.de/geotags?search=karlsruhe
     console.log(url);
     changeActiveSite(this);
     ajax.open("GET", url, true);
@@ -167,12 +235,13 @@ plusonebutton.addEventListener("click", function(){
         if(ajax.readyState == 4){
             console.log(JSON.parse(ajax.response));
             generateList(JSON.parse(ajax.response));
+            updatePage();
         }
     };
     var newCurrentPage=current_page+1;
     var pageURL = "currentpage="+newCurrentPage;
     var url = "";
-    url = "/geotags?"+pageURL+"&"+rowURL; // link.de/geotags?search=karlsruhe
+    url = "/geotags?"+pageURL; // link.de/geotags?search=karlsruhe
     console.log(url);
     changeActiveSite(this);
     ajax.open("GET", url, true);
@@ -184,74 +253,18 @@ plustwobutton.addEventListener("click", function(){
         if(ajax.readyState == 4){
             console.log(JSON.parse(ajax.response));
             generateList(JSON.parse(ajax.response));
+            updatePage();
         }
     };
     var newCurrentPage = current_page+2;
     var pageURL = "currentpage="+newCurrentPage;
     var url = "";
-    url = "/geotags?"+pageURL+"&"+rowURL; // link.de/geotags?search=karlsruhe
+    url = "/geotags?"+pageURL; // link.de/geotags?search=karlsruhe
     console.log(url);
     changeActiveSite(this);
     ajax.open("GET", url, true);
     ajax.send();
 });
-
-function newPageNumbers(current_page, last_page) {
-    currbutton.setAttribute("value", current_page);
-    if(current_page == 1){
-        prevbutton.disabled = true;
-
-        minusonebutton.disabled = true;
-        minustwobutton.disabled = true;
-
-        minustwobutton.setAttribute("value", "");
-        minusonebutton.setAttribute("value", "");
-
-        plusonebutton.setAttribute("value", current_page + 1);
-        plustwobutton.setAttribute("value", current_page + 2);
-    }
-    else if(current_page == 2){
-        minustwobutton.disabled = true;
-        minusonebutton.disabled = false
-
-        prevbutton.disabled = false;
-
-        minustwobutton.setAttribute("value", "");
-        minusonebutton.setAttribute("value", current_page - 1);
-
-        plusonebutton.setAttribute("value", current_page + 1);
-        plustwobutton.setAttribute("value", current_page + 2);
-    }
-    else if(last_page){
-        nextbutton.disabled = true;
-
-        plustwobutton.disabled = true;
-        plusonebutton.disabled = true;
-
-        minustwobutton.setAttribute("value", current_page - 2);
-        minusonebutton.setAttribute("value", current_page - 1);
-
-        plustwobutton.setAttribute("value", "");
-        plusonebutton.setAttribute("value", "");
-    }
-    else{
-        plustwobutton.disabled = false;
-        plusonebutton.disabled = false;
-
-        nextbutton.disabled = false;
-        prevbutton.disabled = false;
-
-        minustwobutton.disabled = false;
-        minusonebutton.disabled = false;
-
-        minustwobutton.setAttribute("value", current_page - 2);
-        minusonebutton.setAttribute("value", current_page - 1);
-
-        plusonebutton.setAttribute("value", current_page + 1);
-        plustwobutton.setAttribute("value", current_page + 2);
-    }
-
-}
 
 function changeActiveSite(site){
     var current_btn = document.querySelector(".pagenumbers input.active");
@@ -270,6 +283,7 @@ document.getElementById("tsubmit").addEventListener("click", function(){
 
         if(ajax.readyState == 4){
             generateList(JSON.parse(ajax.response));
+            updatePage();
         }
     };
 
@@ -283,6 +297,7 @@ document.getElementById("fsubmit").addEventListener("click", function(){
     ajax.onreadystatechange = function(){
         if(ajax.readyState == 4){
             generateList(JSON.parse(ajax.response));
+            updatePage();
         }
     };
 
@@ -318,10 +333,9 @@ var generateList = function(tags){
         }
     }
     gtaLocator.updateLocation(res);
-    if(res.length < (rows+rows)){
-        last_page = true;
-    }
+
 };
+
 
 
 /**

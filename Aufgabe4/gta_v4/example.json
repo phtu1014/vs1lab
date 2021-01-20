@@ -1,0 +1,916 @@
+{
+	"example" : [
+		{
+			"latitude": "49,02",
+			"longitude": "8,38",
+			"name": "Bisasam",
+			"hashtag": "#V"
+		},
+		{
+			"latitude": "49,02",
+			"longitude": "8,42",
+			"name": "Bisaknosp",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "48,98",
+			"longitude": "8,42",
+			"name": "Bisaflor",
+			"hashtag": "#r"
+		},
+		{
+			"latitude": "48,98",
+			"longitude": "8,38",
+			"name": "Glumanda",
+			"hashtag": "#t"
+		},
+		{
+			"latitude": "49,04",
+			"longitude": "8,36",
+			"name": "Glutexo",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "49,04",
+			"longitude": "8,44",
+			"name": "Glurak",
+			"hashtag": "#i"
+		},
+		{
+			"latitude": "48,96",
+			"longitude": "8,44",
+			"name": "Schiggy",
+			"hashtag": "#l"
+		},
+		{
+			"latitude": "48,96",
+			"longitude": "8,36",
+			"name": "Schillok",
+			"hashtag": "#t"
+		},
+		{
+			"latitude": "49,06",
+			"longitude": "8,34",
+			"name": "Turtok",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "49,06",
+			"longitude": "8,46",
+			"name": "Raupy",
+			"hashtag": "#S"
+		},
+		{
+			"latitude": "48,94",
+			"longitude": "8,46",
+			"name": "Safcon",
+			"hashtag": "#y"
+		},
+		{
+			"latitude": "48,94",
+			"longitude": "8,34",
+			"name": "Smettbo",
+			"hashtag": "#s"
+		},
+		{
+			"latitude": "49,08",
+			"longitude": "8,32",
+			"name": "Hornliu",
+			"hashtag": "#t"
+		},
+		{
+			"latitude": "49,08",
+			"longitude": "8,48",
+			"name": "Kokuna",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "48,92",
+			"longitude": "8,48",
+			"name": "Bibor",
+			"hashtag": "#m"
+		},
+		{
+			"latitude": "48,92",
+			"longitude": "8,32",
+			"name": "Taubsi",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "49,10",
+			"longitude": "8,30",
+			"name": "Tauboga",
+			"hashtag": "#W"
+		},
+		{
+			"latitude": "49,10",
+			"longitude": "8,50",
+			"name": "Tauboss",
+			"hashtag": "#a"
+		},
+		{
+			"latitude": "48,90",
+			"longitude": "8,50",
+			"name": "Rattfratz",
+			"hashtag": "#r"
+		},
+		{
+			"latitude": "48,90",
+			"longitude": "8,30",
+			"name": "Rattikarl",
+			"hashtag": "#E"
+		},
+		{
+			"latitude": "49,12",
+			"longitude": "8,28",
+			"name": "Habitak",
+			"hashtag": "#i"
+		},
+		{
+			"latitude": "49,12",
+			"longitude": "8,52",
+			"name": "Ibitak",
+			"hashtag": "#n"
+		},
+		{
+			"latitude": "48,88",
+			"longitude": "8,52",
+			"name": "Rettan",
+			"hashtag": "#F"
+		},
+		{
+			"latitude": "48,88",
+			"longitude": "8,28",
+			"name": "Arbok",
+			"hashtag": "#a"
+		},
+		{
+			"latitude": "49,14",
+			"longitude": "8,26",
+			"name": "Pikachu",
+			"hashtag": "#c"
+		},
+		{
+			"latitude": "49,14",
+			"longitude": "8,54",
+			"name": "Raichu",
+			"hashtag": "#h"
+		},
+		{
+			"latitude": "48,86",
+			"longitude": "8,54",
+			"name": "Sandan",
+			"hashtag": "#D"
+		},
+		{
+			"latitude": "48,86",
+			"longitude": "8,26",
+			"name": "Sandamer",
+			"hashtag": "#a"
+		},
+		{
+			"latitude": "49,16",
+			"longitude": "8,24",
+			"name": "Nidoran",
+			"hashtag": "#s"
+		},
+		{
+			"latitude": "49,16",
+			"longitude": "8,56",
+			"name": "Nidorina",
+			"hashtag": "#s"
+		},
+		{
+			"latitude": "48,84",
+			"longitude": "8,56",
+			"name": "Nidoqueen",
+			"hashtag": "#L"
+		},
+		{
+			"latitude": "48,84",
+			"longitude": "8,24",
+			"name": "Nidoran",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "49,18",
+			"longitude": "8,22",
+			"name": "Nidorino",
+			"hashtag": "#i"
+		},
+		{
+			"latitude": "49,18",
+			"longitude": "8,58",
+			"name": "Nidoking",
+			"hashtag": "#d"
+		},
+		{
+			"latitude": "48,82",
+			"longitude": "8,58",
+			"name": "Piepi",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "48,82",
+			"longitude": "8,22",
+			"name": "Pixi",
+			"hashtag": "#r"
+		},
+		{
+			"latitude": "49,20",
+			"longitude": "8,20",
+			"name": "Vulpix",
+			"hashtag": "#N"
+		},
+		{
+			"latitude": "49,20",
+			"longitude": "8,60",
+			"name": "Vulnona",
+			"hashtag": "#i"
+		},
+		{
+			"latitude": "48,80",
+			"longitude": "8,60",
+			"name": "Pummeluff",
+			"hashtag": "#c"
+		},
+		{
+			"latitude": "48,80",
+			"longitude": "8,20",
+			"name": "Knuddeluff",
+			"hashtag": "#h"
+		},
+		{
+			"latitude": "49,22",
+			"longitude": "8,18",
+			"name": "Zubat",
+			"hashtag": "#t"
+		},
+		{
+			"latitude": "49,22",
+			"longitude": "8,62",
+			"name": "Golbat",
+			"hashtag": "#V"
+		},
+		{
+			"latitude": "48,78",
+			"longitude": "8,62",
+			"name": "Myrapla",
+			"hashtag": "#i"
+		},
+		{
+			"latitude": "48,78",
+			"longitude": "8,18",
+			"name": "Duflor",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "49,24",
+			"longitude": "8,16",
+			"name": "Giflor",
+			"hashtag": "#l"
+		},
+		{
+			"latitude": "49,24",
+			"longitude": "8,64",
+			"name": "Paras",
+			"hashtag": "#S"
+		},
+		{
+			"latitude": "48,76",
+			"longitude": "8,64",
+			"name": "Parasek",
+			"hashtag": "#p"
+		},
+		{
+			"latitude": "48,76",
+			"longitude": "8,16",
+			"name": "Bluzuk",
+			"hashtag": "#a"
+		},
+		{
+			"latitude": "49,26",
+			"longitude": "8,14",
+			"name": "Omot",
+			"hashtag": "#s"
+		},
+		{
+			"latitude": "49,26",
+			"longitude": "8,66",
+			"name": "Digda",
+			"hashtag": "#s"
+		},
+		{
+			"latitude": "48,74",
+			"longitude": "8,66",
+			"name": "Digdri",
+			"hashtag": "#G"
+		},
+		{
+			"latitude": "48,74",
+			"longitude": "8,14",
+			"name": "Mauzi",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "49,28",
+			"longitude": "8,12",
+			"name": "Snobilikat",
+			"hashtag": "#m"
+		},
+		{
+			"latitude": "49,28",
+			"longitude": "8,68",
+			"name": "Enton",
+			"hashtag": "#a"
+		},
+		{
+			"latitude": "48,72",
+			"longitude": "8,68",
+			"name": "Entoron",
+			"hashtag": "#c"
+		},
+		{
+			"latitude": "48,72",
+			"longitude": "8,12",
+			"name": "Menki",
+			"hashtag": "#h"
+		},
+		{
+			"latitude": "49,30",
+			"longitude": "8,10",
+			"name": "Rasaff",
+			"hashtag": "#t"
+		},
+		{
+			"latitude": "49,30",
+			"longitude": "8,70",
+			"name": "Fukano",
+			"hashtag": "#H"
+		},
+		{
+			"latitude": "48,70",
+			"longitude": "8,70",
+			"name": "Arkani",
+			"hashtag": "#a"
+		},
+		{
+			"latitude": "48,70",
+			"longitude": "8,10",
+			"name": "Quapsel",
+			"hashtag": "#t"
+		},
+		{
+			"latitude": "49,32",
+			"longitude": "8,08",
+			"name": "Quaputzi",
+			"hashtag": "#U"
+		},
+		{
+			"latitude": "49,32",
+			"longitude": "8,72",
+			"name": "Quappo",
+			"hashtag": "#n"
+		},
+		{
+			"latitude": "48,68",
+			"longitude": "8,72",
+			"name": "Abra",
+			"hashtag": "#d"
+		},
+		{
+			"latitude": "48,68",
+			"longitude": "8,08",
+			"name": "Kadabra",
+			"hashtag": "#I"
+		},
+		{
+			"latitude": "49,34",
+			"longitude": "8,06",
+			"name": "Simsala",
+			"hashtag": "#c"
+		},
+		{
+			"latitude": "49,34",
+			"longitude": "8,74",
+			"name": "Machollo",
+			"hashtag": "#h"
+		},
+		{
+			"latitude": "48,66",
+			"longitude": "8,74",
+			"name": "Maschock",
+			"hashtag": "#W"
+		},
+		{
+			"latitude": "48,66",
+			"longitude": "8,06",
+			"name": "Machomei",
+			"hashtag": "#ü"
+		},
+		{
+			"latitude": "49,36",
+			"longitude": "8,04",
+			"name": "Knofensa",
+			"hashtag": "#r"
+		},
+		{
+			"latitude": "49,36",
+			"longitude": "8,76",
+			"name": "Ultrigaria",
+			"hashtag": "#d"
+		},
+		{
+			"latitude": "48,64",
+			"longitude": "8,76",
+			"name": "Sarzenia",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "48,64",
+			"longitude": "8,04",
+			"name": "Tentacha",
+			"hashtag": "#E"
+		},
+		{
+			"latitude": "49,38",
+			"longitude": "8,02",
+			"name": "Tentoxa",
+			"hashtag": "#s"
+		},
+		{
+			"latitude": "49,38",
+			"longitude": "8,78",
+			"name": "Kleinstein",
+			"hashtag": "#L"
+		},
+		{
+			"latitude": "48,62",
+			"longitude": "8,78",
+			"name": "Georok",
+			"hashtag": "#i"
+		},
+		{
+			"latitude": "48,62",
+			"longitude": "8,02",
+			"name": "Geowaz",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "49,40",
+			"longitude": "8,00",
+			"name": "Ponita",
+			"hashtag": "#b"
+		},
+		{
+			"latitude": "49,40",
+			"longitude": "8,80",
+			"name": "Gallopa",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "48,60",
+			"longitude": "8,80",
+			"name": "Flegmon",
+			"hashtag": "#r"
+		},
+		{
+			"latitude": "48,60",
+			"longitude": "8,00",
+			"name": "Lahmus",
+			"hashtag": "#N"
+		},
+		{
+			"latitude": "49,42",
+			"longitude": "7,98",
+			"name": "Magnetilo",
+			"hashtag": "#i"
+		},
+		{
+			"latitude": "49,42",
+			"longitude": "8,82",
+			"name": "Magneton",
+			"hashtag": "#c"
+		},
+		{
+			"latitude": "48,58",
+			"longitude": "8,82",
+			"name": "Porenta",
+			"hashtag": "#h"
+		},
+		{
+			"latitude": "48,58",
+			"longitude": "7,98",
+			"name": "Dodu",
+			"hashtag": "#t"
+		},
+		{
+			"latitude": "49,44",
+			"longitude": "7,96",
+			"name": "Dodri",
+			"hashtag": "#N"
+		},
+		{
+			"latitude": "49,44",
+			"longitude": "8,84",
+			"name": "Jurob",
+			"hashtag": "#o"
+		},
+		{
+			"latitude": "48,56",
+			"longitude": "8,84",
+			"name": "Jugong",
+			"hashtag": "#c"
+		},
+		{
+			"latitude": "48,56",
+			"longitude": "7,96",
+			"name": "Sleima",
+			"hashtag": "#h"
+		},
+		{
+			"latitude": "49,46",
+			"longitude": "7,94",
+			"name": "Sleimok",
+			"hashtag": "#m"
+		},
+		{
+			"latitude": "49,46",
+			"longitude": "8,86",
+			"name": "Muschas",
+			"hashtag": "#a"
+		},
+		{
+			"latitude": "48,54",
+			"longitude": "8,86",
+			"name": "Austos",
+			"hashtag": "#l"
+		},
+		{
+			"latitude": "48,54",
+			"longitude": "7,94",
+			"name": "Nebulak",
+			"hashtag": "#W"
+		},
+		{
+			"latitude": "49,48",
+			"longitude": "7,92",
+			"name": "Alpollo",
+			"hashtag": "#i"
+		},
+		{
+			"latitude": "49,48",
+			"longitude": "8,88",
+			"name": "Gengar",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "48,52",
+			"longitude": "8,88",
+			"name": "Onix",
+			"hashtag": "#d"
+		},
+		{
+			"latitude": "48,52",
+			"longitude": "7,92",
+			"name": "Traumato",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "49,50",
+			"longitude": "7,90",
+			"name": "Hypno",
+			"hashtag": "#r"
+		},
+		{
+			"latitude": "49,50",
+			"longitude": "8,90",
+			"name": "Krabby",
+			"hashtag": "#h"
+		},
+		{
+			"latitude": "48,50",
+			"longitude": "8,90",
+			"name": "Kingler",
+			"hashtag": "#o"
+		},
+		{
+			"latitude": "48,50",
+			"longitude": "7,90",
+			"name": "Voltobal",
+			"hashtag": "#l"
+		},
+		{
+			"latitude": "49,52",
+			"longitude": "7,88",
+			"name": "Lektrobal",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "49,52",
+			"longitude": "8,92",
+			"name": "Owei",
+			"hashtag": "#n"
+		},
+		{
+			"latitude": "48,48",
+			"longitude": "8,92",
+			"name": "Kokowei",
+			"hashtag": "#M"
+		},
+		{
+			"latitude": "48,48",
+			"longitude": "7,88",
+			"name": "Tragosso",
+			"hashtag": "#ü"
+		},
+		{
+			"latitude": "49,54",
+			"longitude": "7,86",
+			"name": "Knogga",
+			"hashtag": "#s"
+		},
+		{
+			"latitude": "49,54",
+			"longitude": "8,94",
+			"name": "Kicklee",
+			"hashtag": "#s"
+		},
+		{
+			"latitude": "48,46",
+			"longitude": "8,94",
+			"name": "Nockchan",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "48,46",
+			"longitude": "7,86",
+			"name": "Schlurp",
+			"hashtag": "#n"
+		},
+		{
+			"latitude": "49,56",
+			"longitude": "7,84",
+			"name": "Smogon",
+			"hashtag": "#A"
+		},
+		{
+			"latitude": "49,56",
+			"longitude": "8,96",
+			"name": "Smogmog",
+			"hashtag": "#l"
+		},
+		{
+			"latitude": "48,44",
+			"longitude": "8,96",
+			"name": "Rihorn",
+			"hashtag": "#l"
+		},
+		{
+			"latitude": "48,44",
+			"longitude": "7,84",
+			"name": "Rizeros",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "49,58",
+			"longitude": "7,82",
+			"name": "Chaneira",
+			"hashtag": "#s"
+		},
+		{
+			"latitude": "49,58",
+			"longitude": "8,98",
+			"name": "Tangela",
+			"hashtag": "#T"
+		},
+		{
+			"latitude": "48,42",
+			"longitude": "8,98",
+			"name": "Kangama",
+			"hashtag": "#u"
+		},
+		{
+			"latitude": "48,42",
+			"longitude": "7,82",
+			"name": "Seeper",
+			"hashtag": "#t"
+		},
+		{
+			"latitude": "49,60",
+			"longitude": "7,80",
+			"name": "Seemon",
+			"hashtag": "#W"
+		},
+		{
+			"latitude": "49,60",
+			"longitude": "9,00",
+			"name": "Goldini",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "48,40",
+			"longitude": "9,00",
+			"name": "Golking",
+			"hashtag": "#h"
+		},
+		{
+			"latitude": "48,40",
+			"longitude": "7,80",
+			"name": "Sterndu",
+			"hashtag": "#I"
+		},
+		{
+			"latitude": "49,62",
+			"longitude": "7,78",
+			"name": "Starmie",
+			"hashtag": "#c"
+		},
+		{
+			"latitude": "49,62",
+			"longitude": "9,02",
+			"name": "Pantimos",
+			"hashtag": "#h"
+		},
+		{
+			"latitude": "48,38",
+			"longitude": "9,02",
+			"name": "Sichlor",
+			"hashtag": "#H"
+		},
+		{
+			"latitude": "48,38",
+			"longitude": "7,78",
+			"name": "Rossana",
+			"hashtag": "#a"
+		},
+		{
+			"latitude": "49,64",
+			"longitude": "7,76",
+			"name": "Elektek",
+			"hashtag": "#b"
+		},
+		{
+			"latitude": "49,64",
+			"longitude": "9,04",
+			"name": "Magmar",
+			"hashtag": "#K"
+		},
+		{
+			"latitude": "48,36",
+			"longitude": "9,04",
+			"name": "Pinsir",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "48,36",
+			"longitude": "7,76",
+			"name": "Tauros",
+			"hashtag": "#i"
+		},
+		{
+			"latitude": "49,66",
+			"longitude": "7,74",
+			"name": "Karpador",
+			"hashtag": "#n"
+		},
+		{
+			"latitude": "49,66",
+			"longitude": "9,06",
+			"name": "Garados",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "48,34",
+			"longitude": "9,06",
+			"name": "Lapras",
+			"hashtag": "#L"
+		},
+		{
+			"latitude": "48,34",
+			"longitude": "7,74",
+			"name": "Ditto",
+			"hashtag": "#u"
+		},
+		{
+			"latitude": "49,68",
+			"longitude": "7,72",
+			"name": "Evoli",
+			"hashtag": "#s"
+		},
+		{
+			"latitude": "49,68",
+			"longitude": "9,08",
+			"name": "Aquana",
+			"hashtag": "#t"
+		},
+		{
+			"latitude": "48,32",
+			"longitude": "9,08",
+			"name": "Blitza",
+			"hashtag": "#M"
+		},
+		{
+			"latitude": "48,32",
+			"longitude": "7,72",
+			"name": "Flamara",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "49,70",
+			"longitude": "7,70",
+			"name": "Porygon",
+			"hashtag": "#h"
+		},
+		{
+			"latitude": "49,70",
+			"longitude": "9,10",
+			"name": "Amonitas",
+			"hashtag": "#r"
+		},
+		{
+			"latitude": "48,30",
+			"longitude": "9,10",
+			"name": "Amoroso",
+			"hashtag": "#G"
+		},
+		{
+			"latitude": "48,30",
+			"longitude": "7,70",
+			"name": "Kabuto",
+			"hashtag": "#e"
+		},
+		{
+			"latitude": "49,72",
+			"longitude": "7,68",
+			"name": "Kabutops",
+			"hashtag": "#h"
+		},
+		{
+			"latitude": "49,72",
+			"longitude": "9,12",
+			"name": "Aerodactyl",
+			"hashtag": "#t"
+		},
+		{
+			"latitude": "48,28",
+			"longitude": "9,12",
+			"name": "Relaxo",
+			"hashtag": "#D"
+		},
+		{
+			"latitude": "48,28",
+			"longitude": "7,68",
+			"name": "Arktos",
+			"hashtag": "#o"
+		},
+		{
+			"latitude": "49,74",
+			"longitude": "7,66",
+			"name": "Zapdos",
+			"hashtag": "#c"
+		},
+		{
+			"latitude": "49,74",
+			"longitude": "9,14",
+			"name": "Lavados",
+			"hashtag": "#h"
+		},
+		{
+			"latitude": "48,26",
+			"longitude": "9,14",
+			"name": "Dratini",
+			"hashtag": "#N"
+		},
+		{
+			"latitude": "48,26",
+			"longitude": "7,66",
+			"name": "Dragonir",
+			"hashtag": "#i"
+		},
+		{
+			"latitude": "49,76",
+			"longitude": "7,64",
+			"name": "Dragoran",
+			"hashtag": "#c"
+		},
+		{
+			"latitude": "49,76",
+			"longitude": "9,16",
+			"name": "Mewtu",
+			"hashtag": "#h"
+		},
+		{
+			"latitude": "48,24",
+			"longitude": "9,16",
+			"name": "Mew",
+			"hashtag": "#t"
+		},
+		{
+			"latitude": "49.0",
+			"longitude": "8.4",
+			"name": "Mitte",
+			"hashtag": "#X"
+		}
+	]
+}
