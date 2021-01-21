@@ -60,18 +60,17 @@ var plusonebutton = document.getElementById("plusone");
 var plustwobutton = document.getElementById("plustwo");
 var nextbutton = document.getElementById("nextButton");
 
-var moduleArrayLength = 0;
+
 var maxPageNum = 0;
 
 var updatePage = function(){
     ajax.onreadystatechange = function(){
         if(ajax.readyState == 4){
             var update = JSON.parse(ajax.response);
-            moduleArrayLength = update[0];
-            rows = update[1];
+            maxPageNum = update[0];
 
-            maxPageNum = Math.ceil(moduleArrayLength / rows);
-            console.log("length: " + moduleArrayLength + " | epp: " + rows + " | last: " + maxPageNum);
+            console.log(" | last: " + maxPageNum);
+            buttonLogic(current_page);
         }
     };
 
@@ -79,48 +78,23 @@ var updatePage = function(){
     ajax.send();
 };
 
-function enableAll(){
+function buttonLogic(index){
     plustwobutton.disabled = false;
     plusonebutton.disabled = false;
-    plustwobutton.setAttribute("value", current_page+2);
-    plusonebutton.setAttribute("value", current_page+1);
+    plustwobutton.setAttribute("value", index+2);
+    plusonebutton.setAttribute("value", index+1);
 
     minustwobutton.disabled = false;
     minusonebutton.disabled = false;
-    minustwobutton.setAttribute("value", current_page-2);
-    minusonebutton.setAttribute("value", current_page-1);
+    minustwobutton.setAttribute("value", index-2);
+    minusonebutton.setAttribute("value", index-1);
 
-    currbutton.setAttribute("value", current_page);
+    currbutton.setAttribute("value", index);
 
     nextbutton.disabled = false;
     prevbutton.disabled = false;
-}
 
-function buttonLogic(){
-    if(current_page == 1){
-        prevbutton.disabled = true;
-        minustwobutton.disabled = true;
-        minusonebutton.disabled = true;
-        minustwobutton.setAttribute("value", "");
-        minusonebutton.setAttribute("value", "");
-        console.log("first_page");
-    }
-    else if(current_page == 2){
-        if(current_page == maxPageNum-1){
-            plustwobutton.disabled = true;
-            plustwobutton.setAttribute("value", "");
-            console.log("pre_last_page");
-        }
-        minustwobutton.disabled = true;
-        minustwobutton.setAttribute("value", "");
-        console.log("second_page");
-    }
-    else if(current_page == maxPageNum-1){
-        plustwobutton.disabled = true;
-        plustwobutton.setAttribute("value", "");
-        console.log("pre_last_page");
-    }
-    else if(current_page == maxPageNum){
+    if(index == maxPageNum){
         nextbutton.disabled = true;
         plustwobutton.disabled = true;
         plustwobutton.setAttribute("value", "");
@@ -128,141 +102,98 @@ function buttonLogic(){
         plusonebutton.setAttribute("value", "");
         console.log("last page");
     }
+    else if(index == maxPageNum-1){
+        plustwobutton.disabled = true;
+        plustwobutton.setAttribute("value", "");
+        console.log("pre_last_page");
+    }
+    if(index == 1){
+        prevbutton.disabled = true;
+        minustwobutton.disabled = true;
+        minusonebutton.disabled = true;
+        minustwobutton.setAttribute("value", "");
+        minusonebutton.setAttribute("value", "");
+        console.log("first_page");
+    }
+    else if(index == 2){
+        minustwobutton.disabled = true;
+        minustwobutton.setAttribute("value", "");
+        console.log("second_page");
+    }
+
+}
+
+function loadPagePrevNext(){
+    ajax.onreadystatechange = function(){
+        if(ajax.readyState == 4){
+            console.log(JSON.parse(ajax.response));
+            generateList(JSON.parse(ajax.response));
+            buttonLogic(current_page);
+        }
+    };
+    var pageURL = "currentpage="+current_page;
+    var url = "";
+    url = "/geotags?"+pageURL; // link.de/geotags?search=karlsruhe
+    console.log(url);
+    ajax.open("GET", url, true);
+    ajax.send();
+}
+
+function loadPageSpecific(index){
+    ajax.onreadystatechange = function(){
+        if(ajax.readyState == 4){
+            console.log(JSON.parse(ajax.response));
+            generateList(JSON.parse(ajax.response));
+        }
+    };
+    var pageURL = "currentpage="+index;
+    var url = "";
+    url = "/geotags?"+pageURL; // link.de/geotags?search=karlsruhe
+    console.log(url);
+    ajax.open("GET", url, true);
+    ajax.send();
 }
 
 prevbutton.addEventListener("click", function(){
     current_page--;
-    enableAll();
-    ajax.onreadystatechange = function(){
-        if(ajax.readyState == 4){
-            console.log(JSON.parse(ajax.response));
-            generateList(JSON.parse(ajax.response));
-            updatePage();
-            buttonLogic();
-        }
-    };
     changeActiveSite(currbutton);
-    var pageURL = "currentpage="+current_page;
-    var url = "";
-    url = "/geotags?"+pageURL; // link.de/geotags?search=karlsruhe
-    console.log(url);
-    ajax.open("GET", url, true);
-    ajax.send();
+    loadPagePrevNext();
 });
 
 nextbutton.addEventListener("click", function() {
     current_page++;
-    enableAll();
-    ajax.onreadystatechange = function(){
-        if(ajax.readyState == 4){
-            console.log(JSON.parse(ajax.response));
-            generateList(JSON.parse(ajax.response));
-            updatePage();
-            buttonLogic();
-        }
-    };
     changeActiveSite(currbutton);
-
-    var pageURL = "currentpage="+current_page;
-    var url = "";
-    url = "/geotags?"+pageURL; // link.de/geotags?search=karlsruhe
-    console.log(url);
-    ajax.open("GET", url, true);
-    ajax.send();
+    loadPagePrevNext();
 });
 
 minustwobutton.addEventListener("click", function(){
-    ajax.onreadystatechange = function(){
-        if(ajax.readyState == 4){
-            console.log(JSON.parse(ajax.response));
-            generateList(JSON.parse(ajax.response));
-            updatePage();
-
-        }
-    };
-    var newCurrentPage = current_page-2;
-    var pageURL = "currentpage="+newCurrentPage;
-    var url = "";
-    url = "/geotags?"+pageURL; // link.de/geotags?search=karlsruhe
-    console.log(url);
-
     changeActiveSite(this);
-
-    ajax.open("GET", url, true);
-    ajax.send();
+    var newCurrentPage = current_page-2;
+    loadPageSpecific(newCurrentPage);
 });
 
 minusonebutton.addEventListener("click", function(){
-    ajax.onreadystatechange = function(){
-        if(ajax.readyState == 4){
-            console.log(JSON.parse(ajax.response));
-            generateList(JSON.parse(ajax.response));
-            updatePage();
-        }
-    };
-    var newCurrentPage = current_page-1;
-    var pageURL = "currentpage="+newCurrentPage;
-    var url = "";
-    url = "/geotags?"+pageURL; // link.de/geotags?search=karlsruhe
-    console.log(url);
-
     changeActiveSite(this);
-
-    ajax.open("GET", url, true);
-    ajax.send();
+    var newCurrentPage = current_page-1;
+    loadPageSpecific(newCurrentPage);
 });
 
 currbutton.addEventListener("click", function(){
-    ajax.onreadystatechange = function(){
-        if(ajax.readyState == 4){
-            console.log(JSON.parse(ajax.response));
-            generateList(JSON.parse(ajax.response));
-            updatePage();
-        }
-    };
-    var pageURL = "currentpage="+current_page;
-    var url = "";
-    url = "/geotags?"+pageURL; // link.de/geotags?search=karlsruhe
-    console.log(url);
     changeActiveSite(this);
-    ajax.open("GET", url, true);
-    ajax.send();
+    var newCurrentPage = current_page;
+    loadPageSpecific(newCurrentPage);
 });
 
 plusonebutton.addEventListener("click", function(){
-    ajax.onreadystatechange = function(){
-        if(ajax.readyState == 4){
-            console.log(JSON.parse(ajax.response));
-            generateList(JSON.parse(ajax.response));
-            updatePage();
-        }
-    };
-    var newCurrentPage=current_page+1;
-    var pageURL = "currentpage="+newCurrentPage;
-    var url = "";
-    url = "/geotags?"+pageURL; // link.de/geotags?search=karlsruhe
-    console.log(url);
     changeActiveSite(this);
-    ajax.open("GET", url, true);
-    ajax.send();
+    var newCurrentPage = current_page+1;
+    loadPageSpecific(newCurrentPage);
 });
 
 plustwobutton.addEventListener("click", function(){
-    ajax.onreadystatechange = function(){
-        if(ajax.readyState == 4){
-            console.log(JSON.parse(ajax.response));
-            generateList(JSON.parse(ajax.response));
-            updatePage();
-        }
-    };
-    var newCurrentPage = current_page+2;
-    var pageURL = "currentpage="+newCurrentPage;
-    var url = "";
-    url = "/geotags?"+pageURL; // link.de/geotags?search=karlsruhe
-    console.log(url);
     changeActiveSite(this);
-    ajax.open("GET", url, true);
-    ajax.send();
+    var newCurrentPage = current_page+2;
+    loadPageSpecific(newCurrentPage);
 });
 
 function changeActiveSite(site){
@@ -282,10 +213,10 @@ document.getElementById("tsubmit").addEventListener("click", function(){
 
         if(ajax.readyState == 4){
             generateList(JSON.parse(ajax.response));
+            current_page = 1;
             updatePage();
         }
     };
-
     ajax.open("POST", "/geotags" , true);
     ajax.setRequestHeader("Content-Type", "application/json");
     console.log(data);
@@ -293,29 +224,28 @@ document.getElementById("tsubmit").addEventListener("click", function(){
 });
 
 document.getElementById("fsubmit").addEventListener("click", function(){
+
     ajax.onreadystatechange = function(){
         if(ajax.readyState == 4){
             generateList(JSON.parse(ajax.response));
+            current_page = 1;
             updatePage();
         }
     };
-
     var latURL = "latitude="+ document.getElementById("fLatitude").value;
     var longURL = "longitude="+ document.getElementById("fLongitude").value;
     var termURL = "search="+ document.getElementById("discovery").value;
 
     var url = "";
-    var pageURL = "currentpage="+current_page;
+
     if(document.getElementById("discovery").value){
-        url = "/geotags?"+termURL+"&"+pageURL+"&"+rowURL; // link.de/geotags?search=karlsruhe
-        console.log(url);
-        ajax.open("GET", url, true);
+        url = "/geotags?"+termURL; // link.de/geotags?search=karlsruhe
     }
     else{
-        url = "/geotags?"+latURL+"&"+longURL+"&"+pageURL+"&"+rowURL;  //link.de/geotags?latitude=123&longitude=567
-        console.log(url);
-        ajax.open("GET", url, true);
+        url = "/geotags?"+latURL+"&"+longURL;  //link.de/geotags?latitude=123&longitude=567
     }
+    console.log(url);
+    ajax.open("GET", url, true);
     ajax.send();
 });
 
@@ -331,6 +261,7 @@ var generateList = function(tags){
             document.getElementById(i.toString()).innerHTML = tag.name + " (" + tag.latitude + ", " + tag.longitude + ") " + tag.hashtag;
         }
     }
+    updatePage();
     gtaLocator.updateLocation(res);
 
 };

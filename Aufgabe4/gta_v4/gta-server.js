@@ -47,7 +47,7 @@ function GeoTag(latitude, longitude, name, hashtag, id){
   this.longitude = longitude;
   this.hashtag = hashtag;
   this.id = id;
-};
+}
 /*
 Alternative:
 class GeoTag{
@@ -66,15 +66,23 @@ class GeoTag{
  * - Funktion zum Löschen eines Geo Tags.
  */
 var idCounter = 0;
-var rows = 3;
+
+
 
 // TODO: CODE ERGÄNZEN
 var geoTagModule = (function() {
   //private
   var geoTags = [];
-
+    var dterm;
+    var dlat;
+    var dlong;
+    var maxPageNum = 0;
+    var rows = 3;
+    var currentPageIndex = 0;
+    var arrayCase = 0;
   return{
   //public
+
     searchInRadius: function(radius, longitude, latitude){
       var res = [];
       geoTags.forEach(function(geoTag){
@@ -96,12 +104,14 @@ var geoTagModule = (function() {
           res.push(geoTag);
         }
       });
+      dterm = term;
       return res;
     },
 
     addGeoTag:function(tag){
       tag.id = idCounter++;
       geoTags.push(tag);
+      currentPageIndex = Math.ceil((geoTags.length)/rows);
       return tag.id;
     },
 
@@ -117,7 +127,6 @@ var geoTagModule = (function() {
         if(element.id == id){
           var index = geoTags.indexOf(element);
           geoTags.splice(index, 1);
-          return;
         }
       });
     },
@@ -126,20 +135,27 @@ var geoTagModule = (function() {
       return geoTags;
     },
 
-    getPageItems:function(page){
-
+    getPageItems:function(page, targetArray){
         var res = [];
         var start = rows*(page-1);
         var end = start+rows;
+
         var j;
+
+        maxPageNum = Math.ceil(targetArray/rows);
+
         for(j = start; j < end; j++){
-            if(geoTags[j] !== null && geoTags[j] !== undefined) {
-                res.push(geoTags[j]);
+            if(targetArray[j] !== null && targetArray[j] !== undefined) {
+                res.push(targetArray[j]);
             }
             else{
                 j = end;
             }
         }
+
+        maxPageNum = Math.ceil(targetArray.length/rows);
+        currentPageIndex = page;
+
         return res;
     },
 
@@ -161,7 +177,6 @@ var geoTagModule = (function() {
           if(tag.hashtag){
             element.hashtag = tag.hashtag;
           }
-          return;
         }
       });
     },
@@ -172,7 +187,36 @@ var geoTagModule = (function() {
 
   getElementsPerPage: function(){
         return rows;
-  }
+  },
+        getDTerm(){
+        return dterm;
+        },
+      getDLong(){
+          return dlong;
+      },
+      getDLat(){
+          return dlat;
+      },
+      getMaxPageNum(){
+        return maxPageNum;
+      },
+      setArrayCase: function(caseNum){
+        if(caseNum <= 0){
+            caseNum = 0;
+        }
+        else if(caseNum === 1){
+            caseNum = 1;
+        }
+        else if(caseNum === 2){
+            caseNum = 2;
+        }
+        arrayCase = caseNum;
+      },
+
+      getArrayCase: function(){
+        return arrayCase;
+      }
+
   };
 })();
 
@@ -274,18 +318,32 @@ app.get('/geotags', function(req, res){
     if(req.query.radius && req.query.radius > 0){
       radius = req.query.radius;
     }
-    res.json(geoTagModule.searchInRadius(radius, req.query.longitude, req.query.latitude));
+
+    geoTagModule.setArrayCase(2);
+     res.json(geoTagModule.getPageItems(1, geoTagModule.searchInRadius(radius, req.query.latitude, req.query.longitude)));
     return;
   }
   else if(req.query.longitude || req.query.latitude){
     res.status(400).send("request must provide 'latitude' & 'longitude' (&optional 'radius') parameter");
   }
   else if(req.query.search){
-        res.json(geoTagModule.searchForTerm(req.query.search));
-    return;
+     geoTagModule.setArrayCase(1);
+     res.json(geoTagModule.getPageItems(1, geoTagModule.searchForTerm(req.query.search)));
+     return;
   }
   else if(req.query.currentpage){
-      res.json(geoTagModule.getPageItems(req.query.currentpage));
+      var array;
+      switch(geoTagModule.getArrayCase()){
+          case 0:
+              array = geoTagModule.get();
+              break;
+          case 1:
+              array = geoTagModule.searchForTerm(geoTagModule.getDTerm());
+              break;
+          case 2:
+              array = geoTagModule.searchInRadius(req.query.radius, geoTagModule.getDLat(), geoTagModule.getDLong());
+      }
+      res.json(geoTagModule.getPageItems(req.query.currentpage, array));
       return;
   }
   else{
@@ -297,11 +355,15 @@ app.get('/geotags', function(req, res){
 
 //Route to add new Geotag
 app.post('/geotags', function(req, res){
+
     if(req.body.latitude && req.body.longitude && req.body.name && req.body.hashtag){
-      var id = geoTagModule.addGeoTag(req.body);
-      res.status(201).set("Location", "http://" + server.address().address + ":" + server.address().port + "/geotags/" + id).json(geoTagModule.get());
+        geoTagModule.setArrayCase(0);
+     var id = geoTagModule.addGeoTag(req.body);
+    var pageIndex=1;
+      res.status(201).set("Location", "http://" + server.address().address + ":" + server.address().port + "/geotags/" + id).json(geoTagModule.getPageItems(pageIndex, geoTagModule.get()));
     }
     else if(req.body.example){
+        geoTagModule.setArrayCase(0);
         var id;
         req.body.example.forEach(function(element){
             if(element.latitude && element.longitude
@@ -348,7 +410,7 @@ app.delete('/geotags/:id', function(req, res){
 });
 
 app.get('/update', function(req, res){
-    var update = [geoTagModule.get().length, geoTagModule.getElementsPerPage()];
+    var update = [geoTagModule.getMaxPageNum()];
     res.json(update);
     return;
 });
