@@ -83,8 +83,9 @@ var geoTagModule = (function() {
   return{
   //public
 
-    searchInRadius: function(radius, longitude, latitude){
+    searchInRadius: function(longitude, latitude){
       var res = [];
+      var radius = 12;
       geoTags.forEach(function(geoTag){
         var disLong = longitude - geoTag.longitude;
         var disLat = latitude - geoTag.latitude;
@@ -93,6 +94,8 @@ var geoTagModule = (function() {
           res.push(geoTag);
           }
       });
+      dlat = latitude;
+      dlong = longitude;
       return res;
     },
 
@@ -124,7 +127,7 @@ var geoTagModule = (function() {
 
     deleteGeoTagById:function(id){
       geoTags.forEach(function(element){
-        if(element.id == id){
+        if(element.id === id){
           var index = geoTags.indexOf(element);
           geoTags.splice(index, 1);
         }
@@ -161,7 +164,7 @@ var geoTagModule = (function() {
 
     editTag: function(id, tag){
     geoTags.forEach(element => {
-        if(element.id == id){
+        if(element.id === id){
           if(tag.id){
             element.id = tag.id;
           }
@@ -314,17 +317,13 @@ app.post('/discovery', function(req, res){
 //Route to get geotags by Searchterm, by radius or all
 app.get('/geotags', function(req, res){
  if(req.query.latitude && req.query.longitude){
-    var radius = 20;
-    if(req.query.radius && req.query.radius > 0){
-      radius = req.query.radius;
-    }
+     geoTagModule.setArrayCase(2);
+     res.json(geoTagModule.getPageItems(1, geoTagModule.searchInRadius(req.query.longitude, req.query.latitude)));
 
-    geoTagModule.setArrayCase(2);
-     res.json(geoTagModule.getPageItems(1, geoTagModule.searchInRadius(radius, req.query.latitude, req.query.longitude)));
-    return;
+     return;
   }
   else if(req.query.longitude || req.query.latitude){
-    res.status(400).send("request must provide 'latitude' & 'longitude' (&optional 'radius') parameter");
+    res.status(400).send("request must provide 'latitude' & 'longitude' parameter");
   }
   else if(req.query.search){
      geoTagModule.setArrayCase(1);
@@ -341,7 +340,9 @@ app.get('/geotags', function(req, res){
               array = geoTagModule.searchForTerm(geoTagModule.getDTerm());
               break;
           case 2:
-              array = geoTagModule.searchInRadius(req.query.radius, geoTagModule.getDLat(), geoTagModule.getDLong());
+              var lat = geoTagModule.getDLat();
+              var long = geoTagModule.getDLong();
+              array = geoTagModule.searchInRadius(long, lat);
       }
       res.json(geoTagModule.getPageItems(req.query.currentpage, array));
       return;
@@ -359,8 +360,8 @@ app.post('/geotags', function(req, res){
     if(req.body.latitude && req.body.longitude && req.body.name && req.body.hashtag){
         geoTagModule.setArrayCase(0);
      var id = geoTagModule.addGeoTag(req.body);
-    var pageIndex=1;
-      res.status(201).set("Location", "http://" + server.address().address + ":" + server.address().port + "/geotags/" + id).json(geoTagModule.getPageItems(pageIndex, geoTagModule.get()));
+
+      res.status(201).set("Location", "http://" + server.address().address + ":" + server.address().port + "/geotags/" + id).json(geoTagModule.getPageItems(1, geoTagModule.get()));
     }
     else if(req.body.example){
         geoTagModule.setArrayCase(0);
@@ -385,7 +386,7 @@ app.post('/geotags', function(req, res){
 //Route to get a specific container-ressource
 app.get('/geotags/:id',function(req, res){
     geoTagModule.get().forEach(element => {
-      if(element.id == req.params.id){
+      if(element.id === req.params.id){
         res.json(element);
         return;
       }
